@@ -1,4 +1,5 @@
 import { Star, ShoppingCart } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 interface ProductCardProps {
@@ -13,6 +14,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ 
+  id,
   name, 
   price, 
   originalPrice, 
@@ -29,7 +31,8 @@ export const ProductCard = ({
   };
 
   return (
-    <div className="bg-card rounded-lg shadow-card hover:shadow-card-hover transition-all duration-200 overflow-hidden group cursor-pointer">
+    <Link to={`/product/${id}`} className="block">
+      <div className="bg-card rounded-lg shadow-card hover:shadow-card-hover transition-all duration-200 overflow-hidden group cursor-pointer">
       <div className="relative">
         <img 
           src={image} 
@@ -82,7 +85,8 @@ export const ProductCard = ({
           <ShoppingCart className="h-4 w-4 mr-2" />
           Thêm vào giỏ
         </Button>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };

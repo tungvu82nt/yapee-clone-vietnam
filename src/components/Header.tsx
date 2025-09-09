@@ -1,4 +1,5 @@
 import { Search, ShoppingCart, User, Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -9,7 +10,7 @@ export const Header = () => {
         {/* Top bar */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-6">
-            <h1 className="text-2xl font-bold text-primary">Yapee</h1>
+            <Link to="/" className="text-2xl font-bold text-primary">Yapee</Link>
             <nav className="hidden md:flex space-x-6">
               <a href="#" className="text-sm text-muted-foreground hover:text-primary">Trang chủ</a>
               <a href="#" className="text-sm text-muted-foreground hover:text-primary">Danh mục</a>
@@ -17,10 +18,12 @@ export const Header = () => {
             </nav>
           </div>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="hidden md:flex">
-              <User className="h-4 w-4 mr-2" />
-              Tài khoản
-            </Button>
+            <Link to="/login">
+              <Button variant="ghost" size="sm" className="hidden md:flex">
+                <User className="h-4 w-4 mr-2" />
+                Tài khoản
+              </Button>
+            </Link>
             <Button variant="ghost" size="sm" className="relative">
               <ShoppingCart className="h-4 w-4" />
               <span className="absolute -top-1 -right-1 bg-secondary text-secondary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
