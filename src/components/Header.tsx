@@ -24,12 +24,14 @@ export const Header = () => {
                 Tài khoản
               </Button>
             </Link>
-            <Button variant="ghost" size="sm" className="relative">
-              <ShoppingCart className="h-4 w-4" />
-              <span className="absolute -top-1 -right-1 bg-secondary text-secondary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                2
-              </span>
-            </Button>
+            <Link to="/cart">
+              <Button variant="ghost" size="sm" className="relative">
+                <ShoppingCart className="h-4 w-4" />
+                <span className="absolute -top-1 -right-1 bg-secondary text-secondary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  2
+                </span>
+              </Button>
+            </Link>
             <Button variant="ghost" size="sm" className="md:hidden">
               <Menu className="h-4 w-4" />
             </Button>
@@ -37,19 +39,31 @@ export const Header = () => {
         </div>
 
         {/* Search bar */}
-        <div className="relative max-w-2xl mx-auto">
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            const query = formData.get('search') as string;
+            if (query.trim()) {
+              window.location.href = `/search?q=${encodeURIComponent(query.trim())}`;
+            }
+          }}
+          className="relative max-w-2xl mx-auto"
+        >
           <Input
+            name="search"
             type="text"
             placeholder="Tìm kiếm sản phẩm..."
             className="pl-4 pr-12 py-3 w-full text-base"
           />
           <Button 
+            type="submit"
             size="sm" 
             className="absolute right-1 top-1 bottom-1 px-6 bg-primary hover:bg-primary-hover"
           >
             <Search className="h-4 w-4" />
           </Button>
-        </div>
+        </form>
       </div>
     </header>
   );
